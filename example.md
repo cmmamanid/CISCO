@@ -2,7 +2,7 @@
 
 **Ejemplo1** :
 
- ```sql
+ ```
 	 select * 	        from dual;
 	 --Dummy
 	 --x	 
@@ -18,4 +18,4 @@
  - Cuando mas de una columna o expresión están en el distinct retorna combinaciones únicas
  - Siempre debe ir despues de la sentencia `select`
  
- ```sql
+ ```
