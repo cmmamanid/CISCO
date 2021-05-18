@@ -1,4 +1,4 @@
-# Apuntes CISCO
+# CISCO
 
 **Ejemplo1** :
 
@@ -18,5 +18,7 @@
  - Cuando mas de una columna o expresión están en el distinct retorna combinaciones únicas
  - Siempre debe ir despues de la sentencia `select`
  - fffhfhhfhfhfg
+
+ ```
 
  ```
