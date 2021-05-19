@@ -62,13 +62,22 @@ Remote Authentication Dial-In User Services (RADIUS)
 
 **Internal User Identities**: Cisco ISE tiene un almacen de identidad interno para autenticar y autorizar, que se puede utilizar para un numero limitado de cuentas de usuario.
 
-**External Identity Stores**: Permiten una mejor escalabilidad y gestión de los procesos de autorización y autenticación de ISE, así como la integración de otros servicios de autenticación. Cisco ISE se conecta
+**External Identity Stores**: Permiten una mejor escalabilidad y gestión de los procesos de autorización y autenticación de ISE, así como la integración de otros servicios de autenticación. Cisco ISE se conecta a la fuente de identidad externa para verificar las credenciales de nombre de usuario y contraseña para las políticas de autenticación. La información de certificado también se puede recuperar de un almacén de identidades externo.
 
+**External Identity Stores**: 
 
+- Active Directory
+- LDAP
+- ODBC
+- RADIUS Token
+- RSA SecurID
+- SAML Id Providers
 
+1. Active Directory: Sigue la estructura X.500 al igual que DNS, AD aprovecha los dominios de AD, que son agrupaciones de usuarios y cuentas de máquinas, permisos y políticas. (AD-forest, AD-root domain, AD-child domain).
 
+2. LDAP: Es un protocolo ligero de acceso a directorios (LDAP), se utiliza para conectarse a base de datos de servicios de directorio X.500 y recuperar información de ellas. No se usa muy a menudo con ISE, debido a que este tiene un conectar más poderoso. El uso de LDAP como almacén de identidad externo es compatible para autenticación de usuarios. TCP 389, se recomienda utilizar LDAP con SSL TCP 636.
 
-
+   
 
 #### CHAPTER 3: Extensive authentication Protocol (EAP) over LAN 802.1X
 
@@ -80,9 +89,26 @@ IEEE estandarizo 802.1X como una solución port base para el acceso a la red.
 
 **Componentes**
 
-1. Suplicant
+1. Suplicant: Software del endpoint (tambien llamado peer) que se comunica con EAP en la capa 2, este software responde al autenticador y proporciona las credenciales.
+2. Authenticator: Switch, WLC (NAD - Network Access Device) funcionan como middleman, encapsulan la comunicación dirigida al authentication server.
+3. Authentication: Valida la identidad del endpoint y proporciona un resultado al Authenticator Server (ISE). 
+
+**EAP Types:** 
+
+1. Native EAP
+2. Tunneled EAP: EAP nativo dentro de un tunnel TLS, entre el supplicant y el authenticator.
 
 #### CHAPTER 4: Non-802.1X Authentication
+
+Se mantiene debido a que no es práctico la autenticación de puertos por 802.1X, esto se refuerza con la utilización de dispositivos IoT, además muchos dispositivos IoT no son compatibles con 802.1X, por lo que debe existir otra forma de autenticar estos dispositivos. Esto tambien se debe aplicar para dispositivos temporales o usuarios invitados que necesitan acceso a internet.
+
+**MAC Authentication Bypass**: Una solución es hacer que el authenticator actue en nombre del endpoint, el authenticator utiliza la dirección MAC del endpoint como identidad. (MAB)
+
+Otro camino para mejorar la seguridad de MAB es combinar con profiling para autorizar un endpoint, con el profiling, ISE recolecta atributos acerca del dispositivo conectado para crear un huella digital, basada en información y el tipo del dispositivo que se esta conectando para garantizar que se le pueda otorgar autorización en la red.
+
+**Web Authentication**
+
+
 
 #### CHAPTER 5: Introduction to advanced concepts
 
