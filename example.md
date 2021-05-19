@@ -2,7 +2,7 @@
 
 **ISE**
 
-**Posture: ** Evalua el estado final de un punto final.
+**Posture:** Evalua el estado final de un punto final.
 
 **Puertos utilizados para la CoA:** 2799, 1700
 
@@ -10,7 +10,7 @@
 
 
 
-## **PARTE 1 ** : AUTHENTICATION, AUTHORIZATION AND ACCOUNTIG
+## PARTE 1 : AUTHENTICATION, AUTHORIZATION AND ACCOUNTIG
 
 #### CHAPTER 1: Fundamentals of AAA
 
@@ -115,7 +115,7 @@ Tipos de personas:
 
 - PAN (Policy Administration Node) - incluye la configuración de las licencias.
 
-**Monitoring ** (Persona de supervisión): Actua como un servidor de registro centralizado.
+**Monitoring** (Persona de supervisión): Actua como un servidor de registro centralizado.
 
 - MnT (Monitoring and Troubleshooting Node) - Supervisión y resolución de problemas - puede existir hasta 2 Mnt en un cube ISE.
 
@@ -125,13 +125,13 @@ Tipos de personas:
 
   Servicios encontrados: Profiling of endpoints, TC-NAC (Threat Centric Network Access Control), SGT Exchange Protocol, TACACS+ ---- puede existir hasta 50 PSN en un cube ISE.
 
-**PxGrid: ** Se encarga de compartir datos de seguridad de manera eficiente y escalable.
+**PxGrid:** Se encarga de compartir datos de seguridad de manera eficiente y escalable.
 
 
 
 #### CHAPTER 7: A guided Tour of the Cisco ISE Graphical User Interface (GUI)
 
-**Tipos de politicas ISE: ** A medida que un Endpoint intenta tener acceso a la red mediante un NAD.
+**Tipos de politicas ISE:** A medida que un Endpoint intenta tener acceso a la red mediante un NAD.
 
 **Authentication:**  Capacidad de identificar un punto final o el usuario de un punto final cuando se conecta a la red.
 
