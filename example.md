@@ -102,7 +102,7 @@ IEEE estandarizo 802.1X como una solución port base para el acceso a la red.
 
 Se mantiene debido a que no es práctico la autenticación de puertos por 802.1X, esto se refuerza con la utilización de dispositivos IoT, además muchos dispositivos IoT no son compatibles con 802.1X, por lo que debe existir otra forma de autenticar estos dispositivos. Esto tambien se debe aplicar para dispositivos temporales o usuarios invitados que necesitan acceso a internet.
 
-**MAC Authentication Bypass**: Una solución es hacer que el authenticator actue en nombre del endpoint, el authenticator utiliza la dirección MAC del endpoint como identidad. (MAB)
+**MAC Authentication Bypass**: Una solución es hacer que el authenticator actue en nombre del endpoint, el authenticator utiliza la dirección MAC del endpoint como identidad. (MAB) Se habilita despues de 3 intentos fallidos de 30s se acceso mediante 802.1X
 
 Otro camino para mejorar la seguridad de MAB es combinar con profiling para autorizar un endpoint, con el profiling, ISE recolecta atributos acerca del dispositivo conectado para crear un huella digital, basada en información y el tipo del dispositivo que se esta conectando para garantizar que se le pueda otorgar autorización en la red.
 
