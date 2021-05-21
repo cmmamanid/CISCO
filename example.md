@@ -106,7 +106,27 @@ Se mantiene debido a que no es práctico la autenticación de puertos por 802.1X
 
 Otro camino para mejorar la seguridad de MAB es combinar con profiling para autorizar un endpoint, con el profiling, ISE recolecta atributos acerca del dispositivo conectado para crear un huella digital, basada en información y el tipo del dispositivo que se esta conectando para garantizar que se le pueda otorgar autorización en la red.
 
-**Web Authentication**
+**Web Authentication**: Autenticación de un endpoint que no tiene configurado un supplicant. El autenticador (conmutador) envía la solicitud del endpoint a un portal web local o centralizado, el nombre del usuario y la contraseña enviados al portal web se envían luego al servidor de autenticación ISE para su autenticación.
+
+**Local Web Authentication**: El autenticador redirige el tráfico web (HTTP/HTTPS) a un portal web alojado localmente, donde un usuario puede ingresar usuario y contraseña. El autenticador (conmutador) envía la solicitud e acceso al servidor de autenticación. Cada vez que el conmutador envía la credenciales del usuario, el proceso se considera LWA. No soporta policy acceptance pages, client provisioning,  password changing, self-registratios o device registration, para usar estos servicios avanzados es necesario utilizar Centralized Web Authentication. Guest VLAN y LWA son mutuamente excluyentes, tampoco LWA soporta CoA, por lo que las políticas de acceso no pueden ser cambiadas basadas en posture o profiling state o por la necesidad de poner en cuarentena un endpoint.
+
+**Local Web Authentication with a Centralized Portal**:  La utilización de un portal centralizado permite que una organización personalice el portal. Con los conmutadores de Cisco, las páginas web almacenadas localmente pueden contener la cadena de redireccionamiento que envía el tráfico web del usuario al portal alojado de forma centralizada.  CoA no funciona y el aprovisionamiento de clientes y otras funciones avanzadas tampoco están disponibles. Este método no se ha adoptado ni se utiliza de forma generalizada por estos motivos. 
+
+**Centralized Web Authentication**: CWA es solo para usuarios interactivos que tienen navegadores web, las funciones de WebAuth y VLAN de invitado permanecen mutuamente excluyentes. CoA funciona completamente con CWA, lo que conduce a la compatibilidad con todos los resultados de autorización, como la autorización de ACL y VLAN. Cuando se usa CWA, normalmente no hay ningún suplicante en el punto final, por lo tanto, el portal debe usar un subprograma ActiveX o Java para manejar la renovación de la dirección IP después de asignar VLAN. CWA soporta servicios avanzados como client provisioning, posture assessments, acceptable use policies, password changing, self-registration y device registration.
+
+**Centralized Web Authentication with Third-Party Network Device Support**: La versión 2.1 de ISE agregó soporte para dispositivos de acceso a la red de terceros, que incluían servicios DHCP y DNS. Dado que muchos dispositivos de red de terceros no admiten la redirección de URL estática o dinámica de forma nativa, esta importante mejora le dio a ISE la capacidad de proporcionar una VLAN de autenticación (o VLAN de autenticación, como se la denomina comúnmente) para simular ese flujo de redirección de URL. 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
