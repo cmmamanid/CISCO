@@ -114,23 +114,31 @@ Otro camino para mejorar la seguridad de MAB es combinar con profiling para auto
 
 **Centralized Web Authentication**: CWA es solo para usuarios interactivos que tienen navegadores web, las funciones de WebAuth y VLAN de invitado permanecen mutuamente excluyentes. CoA funciona completamente con CWA, lo que conduce a la compatibilidad con todos los resultados de autorización, como la autorización de ACL y VLAN. Cuando se usa CWA, normalmente no hay ningún suplicante en el punto final, por lo tanto, el portal debe usar un subprograma ActiveX o Java para manejar la renovación de la dirección IP después de asignar VLAN. CWA soporta servicios avanzados como client provisioning, posture assessments, acceptable use policies, password changing, self-registration y device registration.
 
-**Centralized Web Authentication with Third-Party Network Device Support**: La versión 2.1 de ISE agregó soporte para dispositivos de acceso a la red de terceros, que incluían servicios DHCP y DNS. Dado que muchos dispositivos de red de terceros no admiten la redirección de URL estática o dinámica de forma nativa, esta importante mejora le dio a ISE la capacidad de proporcionar una VLAN de autenticación (o VLAN de autenticación, como se la denomina comúnmente) para simular ese flujo de redirección de URL. 
+**Centralized Web Authentication with Third-Party Network Device Support**: La versión 2.1 de ISE agregó soporte para dispositivos de acceso a la red de terceros, que incluían servicios DHCP y DNS. Dado que muchos dispositivos de red de terceros no admiten la redirección de URL estática o dinámica de forma nativa, esta importante mejora le dio a ISE la capacidad de proporcionar una VLAN de autenticación (o VLAN de autenticación, como se la denomina comúnmente) para simular ese flujo de redirección de URL.
 
-
-
-
-
-
-
-
-
-
-
-
+**Remote-Access Connections**: Cableada, inalámbrica y VPN (IPsec o SSL).
 
 
 
 #### CHAPTER 5: Introduction to advanced concepts
+
+**Authorization**: Proceso para determinar a que recursos puede tener acceso un usuario autenticado.
+
+**No CoA**: (default)puede usar esta opción para deshabilitar la configuración global de CoA. Esta configuración anula cualquier CoA configurado por política de creación de perfiles de punto final. Si el objetivo es solo la visibilidad, conserve el valor predeterminado como Sin CoA.
+
+**Port Bounce**: puede usar esta opción si el puerto del conmutador existe con una sola sesión. Si el puerto existe con varias sesiones, utilice la opción Reautorizar. Si el objetivo es actualizar inmediatamente la política de acceso en función de los cambios de perfil, seleccione la opción Port Bounce, esto garantizará que todos los puntos finales sin cliente se vuelvan a autorizar y la dirección IP se actualice, si es necesario.
+
+**Reauth**: puede utilizar esta opción para aplicar la reautenticación de un punto final ya autenticado cuando se crea un perfil. Seleccione la opción Reautorizar, si no se espera ningún cambio de dirección o VLAN después de la reautorización de la sesión actual. 
+
+**Change Of Authorization**: Es un estándar RFC 5176, mecanismo para cambiar los atributos AAA de una sesión después de que se haya autenticado.
+
+**Automating MAC Authentication Bypass (MAB)**: la omisión de autenticación MAC (MAB) es el proceso mediante el cual un punto final omite la autenticación utilizando solo su dirección MAC, esta solicitud de acceso utiliza la dirección MAC del punto final en los campos Identidad y Contraseña.
+
+**Posture Assessment**: Es un proceso mediante el cual una aplicación (como el Módulo de postura Cisco AnyConnect ISE) que se ejecuta en un punto final o un archivo ejecutable temporal (como el Agente temporal de Cisco) que se ejecuta en el cliente proporciona información crítica sobre el software o sistema operativo que se está ejecutando activamente en el dispositivo. Se pueden comprobar varias condiciones como parte de la evaluación de la postura. Esta información sobre el punto final se envía al servidor de autenticación. El servidor compara los datos con la política de seguridad configurada y evalúa el dispositivo como Compliant, Non- Compliant y Unknown.
+
+**Mobile Device Management (MDM)**: es un sistema de software de seguridad que permite a un administrador configurar y proteger un dispositivo móvil, independientemente de dónde esté ubicado. Como punto final inicialmente integrado con un administrador de dispositivos móviles, el propietario del punto final instala el software MDM y le da permiso para acceder al dispositivo y recopilar la información necesaria. El software MDM realiza una serie de evaluaciones en el dispositivo, identificando el estado actual de seguridad, software y redes, entre otros factores. Luego, esta información se pasa al servidor MDM para su procesamiento. Este servidor MDM puede residir en las instalaciones de la empresa o en la nube.
+
+
 
 ## PARTE 2: CISCO IDENTITY SERVICE ENGINE
 
@@ -173,7 +181,11 @@ Tipos de personas:
 
 **PxGrid:** Se encarga de compartir datos de seguridad de manera eficiente y escalable.
 
+**ISE Deployment Scenarios**
 
+1. Single-Node Deployment: toda la infraestructura ISE reside en un solo dispositivo, una implementación de ISE de un solo nodo es responsable de realizar todas estas personas en un solo dispositivo, como no hay redundancia en esta solución y la disponibilidad de los recursos de la red puede verse afectada en caso de una interrupción.
+2. Two-Node Deployment: Cisco ISE de dos nodos incorpora redundancia, que es muy recomendable en una red de producción. En este tipo de implementación, las diversas personas ISE se distribuyen en dos dispositivos, a veces se la denomina ISE distributed deployment. Las personas de Administración y Monitoreo tienen el concepto de nodos primarios y secundarios. Si ocurre una falla en el PAN primario, no ocurrirá sincronización entre el PAN y los PSN hasta que el PAN secundario se promueva a primario. Una vez que se convierte en principal, se puede reanudar la sincronización. A veces, esto se denomina "warm spare". Debido a que un PSN siempre está activo, cada NAD en la red debe apuntar a cada PSN. Si hay una falla de la persona de Policy Services (y, por lo tanto, el procesamiento de RADIUS) o una falla de un solo dispositivo, el NAD detecta la falla del servicio RADIUS en una de las PSN y dirige el 100% de las consultas RADIUS futuras desde ese NAD al PSN restante.
+3. Distributed Deployments: Al separar la persona de Policy Services de las personas de administración y supervisión, las llamadas RADIUS a una PSN seguirán funcionando incluso si las personas de administración y supervisión fallan.
 
 #### CHAPTER 7: A guided Tour of the Cisco ISE Graphical User Interface (GUI)
 
